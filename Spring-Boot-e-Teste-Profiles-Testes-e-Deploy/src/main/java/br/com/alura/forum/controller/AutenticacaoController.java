@@ -20,7 +20,7 @@ import br.com.alura.forum.controller.form.LoginForm;
 
 @RestController
 @RequestMapping("/auth")
-@Profile("prod")//Só vai carregar esse controller no ambiente de produção
+@Profile(value = {"prod", "test"})//Só vai carregar esse controller no ambiente de produção
 public class AutenticacaoController {
 	
 	@Autowired
