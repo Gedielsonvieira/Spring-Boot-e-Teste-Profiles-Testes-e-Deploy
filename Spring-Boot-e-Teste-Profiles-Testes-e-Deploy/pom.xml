@@ -94,6 +94,7 @@
     </dependencies>
 
     <build>
+        <finalName>forum</finalName><!--Para que ao fazer um build e gerar um pacote o nome seja forum-->
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

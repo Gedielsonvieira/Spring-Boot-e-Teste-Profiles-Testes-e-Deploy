@@ -111,3 +111,58 @@ AutoConfigureTestDatabase.Replace.NONE)** que os testes da interface ‘Reposito
   ler o argumento da maquina virtual(program arguments). Então ele não vai saber qual é o profile ativo do momento. Ele
   vai carregar aquele “default”, ou seja, no teste não conseguimos mudar o perfil pelo program arguments do run pois os
   testes não rodam pelo main.
+
+## Deploy
+
+### Gerando o jar da aplicação via Maven
+
+> Objetivo da aula - Fazer um Deploy e gerar o pacote de uma aplicação com Spring Boot.
+
+Ao realizar um Build, uma aplicaçãos Spring boot por padrão gera um aquivo .jar
+
+Para conseguirmos gerar o build e gerar o pacote da aplicação devemos seguir os passos:
+
+* 1° - Acessar o diretório raiz no terminal
+* 2° - Executar o comando: **mvn clean package** - comando utilizado para que o Maven crie o jar da aplicação.
+  Esse é justamente o comando mais apropriado para que o Maven compile as classes do projeto, execute os testes
+  automatizados e por fim crie o jar da aplicação.**(O build da aplicação é realizado via maven, com o comando mvn clean
+  package.)**
+* 3° - Através disso o pacote .jar vai ser gerado
+* 4° - Para acessar o pacote .jar e executá-lo executamos o comando ls para ver os diretórios, acessamos a pasta
+  target e executamos o camando java -jar nome do arquivo a ser rodado.
+* 5 ° - **ctrl + c** para encerrar a aplicação pelo terminal
+
+### Externalizando senhas com variáveis de ambiente
+
+> Objetivo aula - criar configurações específicas para o profile ambiente de produção.
+
+#### Boa prática ao passar dados sensiveis do arquivo properties
+
+* Geralmente se passa essas configurações via variáveis de ambiente, para não ficar expondo isso no próprio código da
+  aplicação.
+    * Dessa forma essas propriedades serão lidas pelas variáveis de ambiente que serão configuradas no ambiente de
+      produção, no servidor de produção.
+
+#### Duas maneiras de passar as variaveis de ambiente para o Spring:
+
+* **Exportado no sistema operacional:**<br>
+  export FORUM_DATABASE_URL=DATABASE:h2:mem:alura-forum<br>
+  export FORUM_DATABASE_USERNAME=sa<br>
+  export FORUM_DATABASE_PASSWORD=<br>
+  export FORUM_JWT_SECRET=123456<br>
+
+
+* **Ou direto no comando, no prompt via parametro da jvm**<br>
+  java -jar -Dspring.profiles.active=prod -DFORUM_DATABASE_URL=jdbc:h2:mem:alura-forum -DFORUM_DATABASE_USERNAME=sa
+  -DFORUM_DATABASE_PASSWORD= -DFORUM_JWT_SECRET=123456 forum.jar
+
+#### Vantagens de se utilizar variáveis de ambiente em propriedades declaradas nos arquivos properties do Spring Boot?
+
+✅ Tornar mais segura a aplicação<br>
+Ao se utilizar variáveis de ambiente, evitamos deixar exposto no código fonte da aplicação senhas e outras informações
+sensíveis.
+
+✅ Flexibilizar e facilitar a alteração dos valores de determinadas propriedades<br>
+Ao se utilizar variáveis de ambiente, podemos alterar facilmente uma ou mais propriedades da aplicação, sem que seja
+necessário alterar o código fonte dela.
+
