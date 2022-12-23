@@ -166,3 +166,17 @@ sensíveis.
 Ao se utilizar variáveis de ambiente, podemos alterar facilmente uma ou mais propriedades da aplicação, sem que seja
 necessário alterar o código fonte dela.
 
+### Deploy tradicional com arquivo war
+
+As alterações que devemos fazer na aplicação para que o build dela produza um arquivo .war ao invés de .jar são:
+
+- **Alterar a classe main da aplicação para herdar da classe SpringBootServletInitializer, além de nela também
+  sobrescrever o método configure** - Para que o Spring Boot seja inicializado corretamente no servidor de aplicação
+  externo.
+- **Adicionar a tag < packaging >war</ packaging > no pom.xml da aplicação** - Pois o padrão da tag < packaging > é jar
+- **Declarar a dependência do tomcat como provided no pom.xml** - Pois em um deploy tradicional com o arquivo .war a
+  biblioteca do tomcat não deve ser embutida na aplicação.
+
+### jar vs war
+
+* **.jar** - É mais simples, mais leve e já tem o servidor embutido
