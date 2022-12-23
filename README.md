@@ -180,3 +180,26 @@ As alterações que devemos fazer na aplicação para que o build dela produza u
 ### jar vs war
 
 * **.jar** - É mais simples, mais leve e já tem o servidor embutido
+
+## Deploy com Docker e na nuvem
+
+### Gerando imagem Docker da aplicação
+
+Abordagem mais simples e mais comum de como criar a imagem da nossa aplicação é através do **Dockerfile**.
+
+#### Objetivo do arquivo Dockerfile
+
+> É configurar como será criada a imagem Docker da aplicação que utiliza o Spring Boot.
+
+#### Comandos Docker
+
+- **Cria imagem** - docker build -t alura/forum .
+
+- **Para listar as imagens** - docker image list
+
+- **Roda um container** - docker run alura/forum
+
+- Podemos passar as variáveis de ambiente de nossa aplicação para o Docker utilizando o parâmetro -e no comando docker
+  run. Exemplo: **docker run -p 8080:8080 -e FORUM_DATABASE_URL='jdbc:h2:mem:alura-forum' -e
+  SPRING_PROFILES_ACTIVE=’prod’ -e FORUM_DATABASE_USERNAME='sa' -e FORUM_DATABASE_PASSWORD='' -e
+  FORUM_JWT_SECRET='123456' alura/forum**
