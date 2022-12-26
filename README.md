@@ -185,7 +185,9 @@ As alterações que devemos fazer na aplicação para que o build dela produza u
 
 ### Gerando imagem Docker da aplicação
 
-Abordagem mais simples e mais comum de como criar a imagem da nossa aplicação é através do **Dockerfile**.
+Abordagem mais simples e mais comum de como criar a imagem da nossa aplicação é através do **Dockerfile**, onde se
+deve criar um arquivo Dockerfile no diretório raiz da aplicação, para ensinar ao Docker como deve ser gerada a imagem
+dela.
 
 #### Objetivo do arquivo Dockerfile
 
@@ -203,3 +205,9 @@ Abordagem mais simples e mais comum de como criar a imagem da nossa aplicação 
   run. Exemplo: **docker run -p 8080:8080 -e FORUM_DATABASE_URL='jdbc:h2:mem:alura-forum' -e
   SPRING_PROFILES_ACTIVE=’prod’ -e FORUM_DATABASE_USERNAME='sa' -e FORUM_DATABASE_PASSWORD='' -e
   FORUM_JWT_SECRET='123456' alura/forum**
+
+## Spring Boot em ambientes Cloud
+
+> Para executar aplicações com Spring Boot em ambientes Cloud é necessário realizar configurações específicas do
+> provedor Cloud, pois cada provedor Cloud pode exigir diferentes tipos de configurações adicionais, para que o depoy da
+> aplicação Java com Spring Boot possa ser realizado sem problemas.
